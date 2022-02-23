@@ -18,6 +18,11 @@ project "GLFW"
 		"src/window.c"
 	}
 	
+	includedirs
+	{
+		"include"
+	}
+	
 	filter "system:windows"
 		systemversion "latest"
 		staticruntime "On"
@@ -41,10 +46,5 @@ project "GLFW"
 			"_CRT_SECURE_NO_WARNING"
 		}
 		
-	filter "configurations:Debug"
-		runtime "Debug"
-		symbols "On"
-		
-	filter "configurations:Release"
-		runtime "Release"
-		optimize "On"
+	filter {"system:windows", "configurations:Release"}
+		buildoptions "/MT"
